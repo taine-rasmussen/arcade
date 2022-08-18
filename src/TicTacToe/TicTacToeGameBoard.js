@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCa } from 'react'
 import './TicTacToe.scss'
 
 
@@ -17,11 +17,11 @@ const TicTacToeGameBoard = () => {
     { value: '', id: 7 },
     { value: '', id: 8 },
   ])
-
+  const [moveCounter, setMoveCounter] = useState(0)
 
   const handleCellClick = (i) => {
-    let test = gameboard.filter(cell => gameboard.indexOf(cell) == i)
-    console.log(test)
+    setMoveCounter(moveCounter + 1)
+    setGameboard([...gameboard], gameboard[i].value = moveCounter % 2 == 0 ? '0' : 'X')
   }
 
   if (!gameboard) return;
