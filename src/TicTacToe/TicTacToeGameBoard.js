@@ -7,15 +7,15 @@ const TicTacToeGameBoard = () => {
     gameboard,
     setGameboard
   ] = useState([
-    { value: '', id: 0 },
-    { value: '', id: 1 },
-    { value: '', id: 2 },
-    { value: '', id: 3 },
-    { value: '', id: 4 },
-    { value: '', id: 5 },
-    { value: '', id: 6 },
-    { value: '', id: 7 },
-    { value: '', id: 8 },
+    { value: '', id: 0, winner: false },
+    { value: '', id: 1, winner: false },
+    { value: '', id: 2, winner: false },
+    { value: '', id: 3, winner: false },
+    { value: '', id: 4, winner: false },
+    { value: '', id: 5, winner: false },
+    { value: '', id: 6, winner: false },
+    { value: '', id: 7, winner: false },
+    { value: '', id: 8, winner: false },
   ])
   const [moveCounter, setMoveCounter] = useState(0)
 
@@ -31,12 +31,16 @@ const TicTacToeGameBoard = () => {
     <div className='tictactoe_container'>
       <div className='tictactoe_game_container'>
         {gameboard.map((cell, i) => {
-          const { value } = cell
+          const { value, winner } = cell
           return (
             <div
               className='tictactoe_cell'
               key={i}
               onClick={() => { handleCellClick(i) }}
+              style={{
+                background: winner ? '#000' : '#fff',
+                color: winner ? '#fff' : '#000'
+              }}
             >
               {value}
             </div>
