@@ -1,3 +1,23 @@
-.TicTacToe_container {
+.tictactoe_container {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tictactoe_game_container {
+  width: 40%;
+  height: 40%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.tictactoe_cell {
   border: 3px solid #000;
+  border-radius: 10px;
+  height: 150px;
+  width: 150px;
 }
