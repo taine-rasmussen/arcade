@@ -1,9 +1,11 @@
 import './App.css';
 
+import TicTacToeGameBoard from './TicTacToe/TicTacToeGameBoard'
+
 function App() {
   return (
     <div className="App">
-      Arcade is working
+      <TicTacToeGameBoard />
     </div>
   );
 }
