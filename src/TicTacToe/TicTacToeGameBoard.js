@@ -3,16 +3,25 @@ import './TicTacToe.scss'
 
 
 const TicTacToeGameBoard = () => {
-  const [gameboard, setGameboard] = useState()
-  const gameCells = new Array(9).fill({ value: '' })
+  const [
+    gameboard,
+    setGameboard
+  ] = useState([
+    { value: '', id: 0 },
+    { value: '', id: 1 },
+    { value: '', id: 2 },
+    { value: '', id: 3 },
+    { value: '', id: 4 },
+    { value: '', id: 5 },
+    { value: '', id: 6 },
+    { value: '', id: 7 },
+    { value: '', id: 8 },
+  ])
 
-  useEffect(
-    () => {
-      setGameboard([gameCells])
-    }, [])
 
   const handleCellClick = (i) => {
-    console.log(i)
+    let test = gameboard.filter(cell => gameboard.indexOf(cell) == i)
+    console.log(test)
   }
 
   if (!gameboard) return;
@@ -20,7 +29,7 @@ const TicTacToeGameBoard = () => {
   return (
     <div className='tictactoe_container'>
       <div className='tictactoe_game_container'>
-        {gameboard[0].map((cell, i) => {
+        {gameboard.map((cell, i) => {
           const { value } = cell
           return (
             <div
