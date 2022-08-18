@@ -20,6 +20,7 @@ const TicTacToeGameBoard = () => {
   const [moveCounter, setMoveCounter] = useState(0)
 
   const handleCellClick = (i) => {
+    if (gameboard[i].value != '') return;
     setMoveCounter(moveCounter + 1)
     setGameboard([...gameboard], gameboard[i].value = moveCounter % 2 == 0 ? '0' : 'X')
   }
