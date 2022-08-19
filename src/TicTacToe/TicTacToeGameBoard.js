@@ -30,6 +30,26 @@ const TicTacToeGameBoard = () => {
     handlePlayerMove(i)
   }
 
+  useEffect(
+    () => {
+      gameboard.map((cell) => {
+        const { value } = cell
+        if (value == '') return;
+
+        if (gameboard.indexOf(cell) == 0 && gameboard[1].value == value && gameboard[2].value == value) {
+          console.log('top row winner')
+        }
+        if (gameboard.indexOf(cell) == 3 && gameboard[4].value == value && gameboard[5].value == value) {
+          console.log('middle row winner')
+        }
+        if (gameboard.indexOf(cell) == 6 && gameboard[7].value == value && gameboard[8].value == value) {
+          console.log('bottom row winner')
+        }
+
+      })
+    }, [moveCounter]
+  )
+
   if (!gameboard) return;
 
   return (
