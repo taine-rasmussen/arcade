@@ -39,13 +39,9 @@ const TicTacToeGameBoard = () => {
           const { value, winner } = cell
           return (
             <div
-              className='tictactoe_cell'
+              className={`tictactoe_cell_${winner ? 'winner' : 'normal'}`}
               key={i}
               onClick={() => { handleCellClick(i) }}
-              style={{
-                background: winner ? '#000' : '#fff',
-                color: winner ? '#fff' : '#000'
-              }}
             >
               {value}
             </div>

@@ -14,7 +14,23 @@
   flex-wrap: wrap;
 }
 
-.tictactoe_cell {
+.tictactoe_cell_normal {
+  border: 3px solid #000;
+  border-radius: 10px;
+  height: 150px;
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 9rem;
+}
+
+.tictactoe_cell_winner {
+  background: #000;
+  color: #fff;
+  transform: 2s ease;
+
   border: 3px solid #000;
   border-radius: 10px;
   height: 150px;
