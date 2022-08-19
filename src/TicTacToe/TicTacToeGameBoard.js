@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useCallback } from 'react'
 import './TicTacToe.scss'
 
 
@@ -26,11 +26,7 @@ const TicTacToeGameBoard = () => {
     setGameboard([...gameboard], gameboard[i].value = moveCounter % 2 === 0 ? '0' : 'X')
   }
 
-  const handleCellClick = (i) => {
-    handlePlayerMove(i)
-  }
-
-  useEffect(
+  const checkForWin = useCallback(
     () => {
       gameboard.map((cell) => {
         const { value, id } = cell
@@ -67,8 +63,14 @@ const TicTacToeGameBoard = () => {
           setGameboard([...gameboard], gameboard[id].winner = true, gameboard[4].winner = true, gameboard[6].winner = true)
         }
       })
-    }, [gameboard, moveCounter]
-  )
+    }, [moveCounter, gameboard])
+
+
+  const handleCellClick = (i) => {
+    checkForWin()
+    handlePlayerMove(i)
+  }
+
 
   if (!gameboard) return;
 
