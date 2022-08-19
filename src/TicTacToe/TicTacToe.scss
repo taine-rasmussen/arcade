@@ -8,8 +8,7 @@
 }
 
 .tictactoe_game_container {
-  width: 40%;
-  height: 40%;
+  width: 550px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -24,5 +23,5 @@
   justify-content: center;
   align-items: center;
   font-weight: bold;
-  font-size: 4rem;
+  font-size: 9rem;
 }
