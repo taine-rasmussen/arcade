@@ -29,7 +29,7 @@
 .tictactoe_cell_winner {
   background: #000;
   color: #fff;
-  transform: 2s ease;
+  transition: 2s ease;
 
   border: 3px solid #000;
   border-radius: 10px;

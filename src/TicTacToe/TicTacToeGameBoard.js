@@ -33,38 +33,38 @@ const TicTacToeGameBoard = () => {
   useEffect(
     () => {
       gameboard.map((cell) => {
-        const { value } = cell
+        const { value, id } = cell
         if (value === '') return;
         if (moveCounter < 5 || moveCounter > 9) return;
 
         // Horizontal win conditions
         if (gameboard.indexOf(cell) === 0 && gameboard[1].value === value && gameboard[2].value === value) {
-          console.log('top row winner')
+          setGameboard([...gameboard], gameboard[id].winner = true, gameboard[1].winner = true, gameboard[2].winner = true)
         }
         if (gameboard.indexOf(cell) === 3 && gameboard[4].value === value && gameboard[5].value === value) {
-          console.log('middle row winner')
+          setGameboard([...gameboard], gameboard[id].winner = true, gameboard[4].winner = true, gameboard[5].winner = true)
         }
         if (gameboard.indexOf(cell) === 6 && gameboard[7].value === value && gameboard[8].value === value) {
-          console.log('bottom row winner')
+          setGameboard([...gameboard], gameboard[id].winner = true, gameboard[7].winner = true, gameboard[8].winner = true)
         }
 
         // // Vertical win conditions
         if (gameboard.indexOf(cell) === 0 && gameboard[3].value === value && gameboard[6].value === value) {
-          console.log('left column winner')
+          setGameboard([...gameboard], gameboard[id].winner = true, gameboard[3].winner = true, gameboard[6].winner = true)
         }
         if (gameboard.indexOf(cell) === 1 && gameboard[4].value === value && gameboard[7].value === value) {
-          console.log('middle column winner')
+          setGameboard([...gameboard], gameboard[id].winner = true, gameboard[4].winner = true, gameboard[7].winner = true)
         }
         if (gameboard.indexOf(cell) === 2 && gameboard[5].value === value && gameboard[8].value === value) {
-          console.log('right column winner')
+          setGameboard([...gameboard], gameboard[id].winner = true, gameboard[5].winner = true, gameboard[8].winner = true)
         }
 
         // // Diagonal win conditions
         if (gameboard.indexOf(cell) === 0 && gameboard[4].value === value && gameboard[8].value === value) {
-          console.log('left Diagonal winner')
+          setGameboard([...gameboard], gameboard[id].winner = true, gameboard[4].winner = true, gameboard[8].winner = true)
         }
         if (gameboard.indexOf(cell) === 2 && gameboard[4].value === value && gameboard[6].value === value) {
-          console.log('right Diagonal winner')
+          setGameboard([...gameboard], gameboard[id].winner = true, gameboard[4].winner = true, gameboard[6].winner = true)
         }
       })
     }, [gameboard, moveCounter]
