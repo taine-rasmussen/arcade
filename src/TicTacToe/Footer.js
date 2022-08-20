@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import { BsPersonFill, BsFillPeopleFill } from 'react-icons/bs'
 
-
 const Footer = (props) => {
   const {
-    playersNames,
-    scoreboard
+    singlePlayerNames,
+    singlePlayerScore,
+    twoPlayerNames,
+    twoPlayerScore,
   } = props;
 
   const [gameMode, setGameMode] = useState(true)
@@ -19,16 +20,29 @@ const Footer = (props) => {
   return (
     <div className='tictactoe_footer'>
       <div className='tictactoe_footer_names'>
-        {playersNames.map((player, i) => (
-          <div className='tictactie_name_cell' key={i}>
-            <div>
-              {player}
+        {gameMode ? (
+          twoPlayerNames.map((player, i) => (
+            <div className='tictactie_name_cell' key={i}>
+              <div>
+                {player}
+              </div>
+              <div>
+                {twoPlayerScore[player]}
+              </div>
             </div>
-            <div>
-              {scoreboard[player]}
+          ))
+        ) : (
+          singlePlayerNames.map((player, i) => (
+            <div className='tictactie_name_cell' key={i}>
+              <div>
+                {player}
+              </div>
+              <div>
+                {singlePlayerScore[player]}
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        )}
       </div>
       <div
         className='tictactoe_player_select'

@@ -22,9 +22,12 @@ const TicTacToeGameBoard = () => {
   ])
   const [moveCounter, setMoveCounter] = useState(0)
   const [winState, setWinState] = useState(false)
-  const [scoreboard, setScoreboard] = useState({ Player1: 0, Tie: 0, Player2: 0 })
+  const [twoPlayerScore, setTwoPlayerScore] = useState({ Player1: 0, Tie: 0, Player2: 0 })
+  const [singlePlayerScore, setSinglePlayerScore] = useState({ Player1: 0, Tie: 0, Computer: 0 })
 
-  const playersNames = Object.keys(scoreboard)
+  const twoPlayerNames = Object.keys(twoPlayerScore)
+  const singlePlayerNames = Object.keys(singlePlayerScore)
+
 
   const handlePlayerMove = (i) => {
     if (gameboard[i].value !== '') return;
@@ -35,15 +38,15 @@ const TicTacToeGameBoard = () => {
 
   const updateScorbard = () => {
     if (moveCounter % 2 === 0) {
-      return scoreboard.Player1 = scoreboard.Player1 + 1
+      return twoPlayerScore.Player1 = twoPlayerScore.Player1 + 1
     } else {
-      return scoreboard.Player2 = scoreboard.Player2 + 1
+      return twoPlayerScore.Player2 = twoPlayerScore.Player2 + 1
     }
   }
 
   const checkForWin = useCallback(
     () => {
-      if (moveCounter >= 8 && !winState) return scoreboard.Tie++
+      if (moveCounter >= 8 && !winState) return twoPlayerScore.Tie++
 
       gameboard.map((cell) => {
         const { value, id } = cell
@@ -96,8 +99,10 @@ const TicTacToeGameBoard = () => {
         handleCellClick={handleCellClick}
       />
       <Footer
-        scoreboard={scoreboard}
-        playersNames={playersNames}
+        twoPlayerScore={twoPlayerScore}
+        twoPlayerNames={twoPlayerNames}
+        singlePlayerNames={singlePlayerNames}
+        singlePlayerScore={singlePlayerScore}
       />
     </div>
   )
