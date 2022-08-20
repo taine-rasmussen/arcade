@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 
 import Footer from './Footer'
 import Board from './Board'
@@ -22,9 +22,9 @@ const TicTacToeGameBoard = () => {
   ])
   const [moveCounter, setMoveCounter] = useState(0)
   const [winState, setWinState] = useState(false)
-  const [scoreboard, setScoreboard] = useState({ Player1: 3, Tie: 0, Player2: 0 })
-  const playersNames = Object.keys(scoreboard)
+  const [scoreboard, setScoreboard] = useState({ Player1: 0, Tie: 0, Player2: 0 })
 
+  const playersNames = Object.keys(scoreboard)
 
   const handlePlayerMove = (i) => {
     if (gameboard[i].value !== '') return;
@@ -33,8 +33,18 @@ const TicTacToeGameBoard = () => {
     setGameboard([...gameboard], gameboard[i].value = moveCounter % 2 === 0 ? '0' : 'X')
   }
 
+  const updateScorbard = () => {
+    if (moveCounter % 2 === 0) {
+      return scoreboard.Player1 = scoreboard.Player1 + 1
+    } else {
+      return scoreboard.Player2 = scoreboard.Player2 + 1
+    }
+  }
+
   const checkForWin = useCallback(
     () => {
+      if (moveCounter >= 8 && !winState) return scoreboard.Tie++
+
       gameboard.map((cell) => {
         const { value, id } = cell
         if (value === '') return;
@@ -42,36 +52,35 @@ const TicTacToeGameBoard = () => {
 
         // Horizontal win conditions
         if (gameboard.indexOf(cell) === 0 && gameboard[1].value === value && gameboard[2].value === value) {
-          return setGameboard([...gameboard], gameboard[id].winner = true, gameboard[1].winner = true, gameboard[2].winner = true), setWinState(true)
+          return setGameboard([...gameboard], gameboard[id].winner = true, gameboard[1].winner = true, gameboard[2].winner = true), setWinState(true), updateScorbard()
         }
         if (gameboard.indexOf(cell) === 3 && gameboard[4].value === value && gameboard[5].value === value) {
-          return setGameboard([...gameboard], gameboard[id].winner = true, gameboard[4].winner = true, gameboard[5].winner = true), setWinState(true)
+          return setGameboard([...gameboard], gameboard[id].winner = true, gameboard[4].winner = true, gameboard[5].winner = true), setWinState(true), updateScorbard()
         }
         if (gameboard.indexOf(cell) === 6 && gameboard[7].value === value && gameboard[8].value === value) {
-          return setGameboard([...gameboard], gameboard[id].winner = true, gameboard[7].winner = true, gameboard[8].winner = true), setWinState(true)
+          return setGameboard([...gameboard], gameboard[id].winner = true, gameboard[7].winner = true, gameboard[8].winner = true), setWinState(true), updateScorbard()
         }
 
         // Vertical win conditions
         if (gameboard.indexOf(cell) === 0 && gameboard[3].value === value && gameboard[6].value === value) {
-          return setGameboard([...gameboard], gameboard[id].winner = true, gameboard[3].winner = true, gameboard[6].winner = true), setWinState(true)
+          return setGameboard([...gameboard], gameboard[id].winner = true, gameboard[3].winner = true, gameboard[6].winner = true), setWinState(true), updateScorbard()
         }
         if (gameboard.indexOf(cell) === 1 && gameboard[4].value === value && gameboard[7].value === value) {
-          return setGameboard([...gameboard], gameboard[id].winner = true, gameboard[4].winner = true, gameboard[7].winner = true), setWinState(true)
+          return setGameboard([...gameboard], gameboard[id].winner = true, gameboard[4].winner = true, gameboard[7].winner = true), setWinState(true), updateScorbard()
         }
         if (gameboard.indexOf(cell) === 2 && gameboard[5].value === value && gameboard[8].value === value) {
-          return setGameboard([...gameboard], gameboard[id].winner = true, gameboard[5].winner = true, gameboard[8].winner = true), setWinState(true)
+          return setGameboard([...gameboard], gameboard[id].winner = true, gameboard[5].winner = true, gameboard[8].winner = true), setWinState(true), updateScorbard()
         }
 
         // Diagonal win conditions
         if (gameboard.indexOf(cell) === 0 && gameboard[4].value === value && gameboard[8].value === value) {
-          return setGameboard([...gameboard], gameboard[id].winner = true, gameboard[4].winner = true, gameboard[8].winner = true), setWinState(true)
+          return setGameboard([...gameboard], gameboard[id].winner = true, gameboard[4].winner = true, gameboard[8].winner = true), setWinState(true), updateScorbard()
         }
         if (gameboard.indexOf(cell) === 2 && gameboard[4].value === value && gameboard[6].value === value) {
-          return setGameboard([...gameboard], gameboard[id].winner = true, gameboard[4].winner = true, gameboard[6].winner = true), setWinState(true)
+          return setGameboard([...gameboard], gameboard[id].winner = true, gameboard[4].winner = true, gameboard[6].winner = true), setWinState(true), updateScorbard()
         }
       })
     }, [moveCounter, gameboard, handlePlayerMove])
-
 
   const handleCellClick = (i) => {
     handlePlayerMove(i)
