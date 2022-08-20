@@ -19,6 +19,13 @@ const TicTacToeGameBoard = () => {
   ])
   const [moveCounter, setMoveCounter] = useState(0)
   const [winState, setWinState] = useState(false)
+  const [scoreboard, setScoreboard] = useState({ playerOne: 0, tie: 0, playerTwo: 0 })
+
+  const {
+    playerOne,
+    playerTwo,
+    tie
+  } = scoreboard;
 
   const handlePlayerMove = (i) => {
     if (gameboard[i].value !== '') return;
@@ -90,6 +97,10 @@ const TicTacToeGameBoard = () => {
             </div>
           )
         })}
+      </div>
+      <div className='tictactoe_footer'>
+
+
       </div>
     </div>
   )
