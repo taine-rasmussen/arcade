@@ -1,10 +1,18 @@
-import { BsPersonFill } from 'react-icons/bs'
+import { useState } from 'react'
+import { BsPersonFill, BsFillPeopleFill } from 'react-icons/bs'
+
 
 const Footer = (props) => {
   const {
     playersNames,
     scoreboard
   } = props;
+
+  const [gameMode, setGameMode] = useState(true)
+
+  const changeGameMode = () => {
+    setGameMode(!gameMode)
+  }
 
   return (
     <div className='tictactoe_footer'>
@@ -20,8 +28,11 @@ const Footer = (props) => {
           </div>
         ))}
       </div>
-      <div className='tictactoe_player_select'>
-        <span><BsPersonFill /></span>
+      <div
+        className='tictactoe_player_select'
+        onClick={changeGameMode}
+      >
+        <span>{gameMode ? <BsFillPeopleFill /> : <BsPersonFill />}</span>
       </div>
     </div>
   )
