@@ -7,9 +7,9 @@ const Footer = (props) => {
     singlePlayerScore,
     twoPlayerNames,
     twoPlayerScore,
+    setGameMode,
+    gameMode
   } = props;
-
-  const [gameMode, setGameMode] = useState(true)
 
   const changeGameMode = () => {
     setGameMode(!gameMode)
