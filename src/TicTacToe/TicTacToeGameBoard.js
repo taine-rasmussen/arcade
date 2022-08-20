@@ -1,4 +1,7 @@
 import { useState, useCallback } from 'react'
+
+import Footer from './Footer'
+import Board from './Board'
 import './TicTacToe.scss'
 
 
@@ -79,34 +82,14 @@ const TicTacToeGameBoard = () => {
 
   return (
     <div className='tictactoe_container'>
-      <div className='tictactoe_game_container'>
-        {gameboard.map((cell, i) => {
-          const { value, winner } = cell
-          return (
-            <div
-              className={`tictactoe_cell_${winner ? 'winner' : 'normal'}`}
-              key={i}
-              onClick={() => { handleCellClick(i) }}
-            >
-              {value}
-            </div>
-          )
-        })}
-      </div>
-      <div className='tictactoe_footer'>
-        <div className='tictactoe_footer_names'>
-          {playersNames.map((player, i) => (
-            <div className='tictactie_name_cell' key={i}>
-              <div>
-                {player}
-              </div>
-              <div>
-                {scoreboard[player]}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+      <Board
+        gameboard={gameboard}
+        handleCellClick={handleCellClick}
+      />
+      <Footer
+        scoreboard={scoreboard}
+        playersNames={playersNames}
+      />
     </div>
   )
 }
