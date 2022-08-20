@@ -1,4 +1,4 @@
-import React from 'react'
+import { BsPersonFill } from 'react-icons/bs'
 
 const Footer = (props) => {
   const {
@@ -19,6 +19,9 @@ const Footer = (props) => {
             </div>
           </div>
         ))}
+      </div>
+      <div className='tictactoe_player_select'>
+        <span><BsPersonFill /></span>
       </div>
     </div>
   )
