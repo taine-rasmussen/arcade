@@ -19,7 +19,6 @@ const TicTacToeGameBoard = () => {
   ])
   const [moveCounter, setMoveCounter] = useState(0)
 
-
   const handlePlayerMove = (i) => {
     if (gameboard[i].value !== '') return;
     setMoveCounter(moveCounter + 1)
@@ -31,7 +30,6 @@ const TicTacToeGameBoard = () => {
       gameboard.map((cell) => {
         const { value, id } = cell
         if (value === '') return;
-        if (moveCounter < 5 || moveCounter > 9) return;
 
         // Horizontal win conditions
         if (gameboard.indexOf(cell) === 0 && gameboard[1].value === value && gameboard[2].value === value) {
@@ -44,7 +42,7 @@ const TicTacToeGameBoard = () => {
           setGameboard([...gameboard], gameboard[id].winner = true, gameboard[7].winner = true, gameboard[8].winner = true)
         }
 
-        // // Vertical win conditions
+        // Vertical win conditions
         if (gameboard.indexOf(cell) === 0 && gameboard[3].value === value && gameboard[6].value === value) {
           setGameboard([...gameboard], gameboard[id].winner = true, gameboard[3].winner = true, gameboard[6].winner = true)
         }
@@ -55,7 +53,7 @@ const TicTacToeGameBoard = () => {
           setGameboard([...gameboard], gameboard[id].winner = true, gameboard[5].winner = true, gameboard[8].winner = true)
         }
 
-        // // Diagonal win conditions
+        // Diagonal win conditions
         if (gameboard.indexOf(cell) === 0 && gameboard[4].value === value && gameboard[8].value === value) {
           setGameboard([...gameboard], gameboard[id].winner = true, gameboard[4].winner = true, gameboard[8].winner = true)
         }
@@ -63,12 +61,12 @@ const TicTacToeGameBoard = () => {
           setGameboard([...gameboard], gameboard[id].winner = true, gameboard[4].winner = true, gameboard[6].winner = true)
         }
       })
-    }, [moveCounter, gameboard])
+    }, [moveCounter, gameboard, handlePlayerMove])
 
 
   const handleCellClick = (i) => {
-    checkForWin()
     handlePlayerMove(i)
+    checkForWin()
   }
 
 
