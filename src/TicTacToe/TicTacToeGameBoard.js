@@ -19,13 +19,9 @@ const TicTacToeGameBoard = () => {
   ])
   const [moveCounter, setMoveCounter] = useState(0)
   const [winState, setWinState] = useState(false)
-  const [scoreboard, setScoreboard] = useState({ playerOne: 0, tie: 0, playerTwo: 0 })
+  const [scoreboard, setScoreboard] = useState({ Player1: 3, Tie: 0, Player2: 0 })
+  const playersNames = Object.keys(scoreboard)
 
-  const {
-    playerOne,
-    playerTwo,
-    tie
-  } = scoreboard;
 
   const handlePlayerMove = (i) => {
     if (gameboard[i].value !== '') return;
@@ -79,7 +75,6 @@ const TicTacToeGameBoard = () => {
     checkForWin()
   }
 
-
   if (!gameboard) return;
 
   return (
@@ -99,8 +94,18 @@ const TicTacToeGameBoard = () => {
         })}
       </div>
       <div className='tictactoe_footer'>
-
-
+        <div className='tictactoe_footer_names'>
+          {playersNames.map((player, i) => (
+            <div className='tictactie_name_cell' key={i}>
+              <div>
+                {player}
+              </div>
+              <div>
+                {scoreboard[player]}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   )

@@ -5,6 +5,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .tictactoe_game_container {
@@ -40,4 +41,24 @@
   align-items: center;
   font-weight: bold;
   font-size: 9rem;
+}
+
+.tictactoe_footer {
+  display: flex;
+  flex-direction: column;
+}
+
+.tictactoe_footer_names {
+  display: flex;
+  flex-direction: row;
+}
+
+.tictactie_name_cell {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tictactoe_footer_score {
 }
