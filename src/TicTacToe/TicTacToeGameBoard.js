@@ -18,9 +18,11 @@ const TicTacToeGameBoard = () => {
     { value: '', id: 8, winner: false },
   ])
   const [moveCounter, setMoveCounter] = useState(0)
+  const [winState, setWinState] = useState(false)
 
   const handlePlayerMove = (i) => {
     if (gameboard[i].value !== '') return;
+    if (winState) return;
     setMoveCounter(moveCounter + 1)
     setGameboard([...gameboard], gameboard[i].value = moveCounter % 2 === 0 ? '0' : 'X')
   }
@@ -30,35 +32,36 @@ const TicTacToeGameBoard = () => {
       gameboard.map((cell) => {
         const { value, id } = cell
         if (value === '') return;
+        if (winState) return;
 
         // Horizontal win conditions
         if (gameboard.indexOf(cell) === 0 && gameboard[1].value === value && gameboard[2].value === value) {
-          setGameboard([...gameboard], gameboard[id].winner = true, gameboard[1].winner = true, gameboard[2].winner = true)
+          return setGameboard([...gameboard], gameboard[id].winner = true, gameboard[1].winner = true, gameboard[2].winner = true), setWinState(true)
         }
         if (gameboard.indexOf(cell) === 3 && gameboard[4].value === value && gameboard[5].value === value) {
-          setGameboard([...gameboard], gameboard[id].winner = true, gameboard[4].winner = true, gameboard[5].winner = true)
+          return setGameboard([...gameboard], gameboard[id].winner = true, gameboard[4].winner = true, gameboard[5].winner = true), setWinState(true)
         }
         if (gameboard.indexOf(cell) === 6 && gameboard[7].value === value && gameboard[8].value === value) {
-          setGameboard([...gameboard], gameboard[id].winner = true, gameboard[7].winner = true, gameboard[8].winner = true)
+          return setGameboard([...gameboard], gameboard[id].winner = true, gameboard[7].winner = true, gameboard[8].winner = true), setWinState(true)
         }
 
         // Vertical win conditions
         if (gameboard.indexOf(cell) === 0 && gameboard[3].value === value && gameboard[6].value === value) {
-          setGameboard([...gameboard], gameboard[id].winner = true, gameboard[3].winner = true, gameboard[6].winner = true)
+          return setGameboard([...gameboard], gameboard[id].winner = true, gameboard[3].winner = true, gameboard[6].winner = true), setWinState(true)
         }
         if (gameboard.indexOf(cell) === 1 && gameboard[4].value === value && gameboard[7].value === value) {
-          setGameboard([...gameboard], gameboard[id].winner = true, gameboard[4].winner = true, gameboard[7].winner = true)
+          return setGameboard([...gameboard], gameboard[id].winner = true, gameboard[4].winner = true, gameboard[7].winner = true), setWinState(true)
         }
         if (gameboard.indexOf(cell) === 2 && gameboard[5].value === value && gameboard[8].value === value) {
-          setGameboard([...gameboard], gameboard[id].winner = true, gameboard[5].winner = true, gameboard[8].winner = true)
+          return setGameboard([...gameboard], gameboard[id].winner = true, gameboard[5].winner = true, gameboard[8].winner = true), setWinState(true)
         }
 
         // Diagonal win conditions
         if (gameboard.indexOf(cell) === 0 && gameboard[4].value === value && gameboard[8].value === value) {
-          setGameboard([...gameboard], gameboard[id].winner = true, gameboard[4].winner = true, gameboard[8].winner = true)
+          return setGameboard([...gameboard], gameboard[id].winner = true, gameboard[4].winner = true, gameboard[8].winner = true), setWinState(true)
         }
         if (gameboard.indexOf(cell) === 2 && gameboard[4].value === value && gameboard[6].value === value) {
-          setGameboard([...gameboard], gameboard[id].winner = true, gameboard[4].winner = true, gameboard[6].winner = true)
+          return setGameboard([...gameboard], gameboard[id].winner = true, gameboard[4].winner = true, gameboard[6].winner = true), setWinState(true)
         }
       })
     }, [moveCounter, gameboard, handlePlayerMove])
