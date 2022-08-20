@@ -9,7 +9,7 @@
 }
 
 .tictactoe_game_container {
-  width: 500px;
+  width: 470px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -51,13 +51,17 @@
 .tictactoe_footer_names {
   display: flex;
   flex-direction: row;
+  width: 100%;
+  margin-top: 10px;
 }
 
 .tictactie_name_cell {
-  margin: 10px;
+  margin: 0px 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-weight: bold;
+  font-size: 2rem;
 }
 
 .tictactoe_footer_score {
