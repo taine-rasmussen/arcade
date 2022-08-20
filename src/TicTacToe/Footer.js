@@ -14,6 +14,8 @@ const Footer = (props) => {
     setGameMode(!gameMode)
   }
 
+  const gameModeCopy = gameMode ? '2 P' : '1 P'
+
   return (
     <div className='tictactoe_footer'>
       <div className='tictactoe_footer_names'>
@@ -30,9 +32,11 @@ const Footer = (props) => {
       </div>
       <div
         className='tictactoe_player_select'
-        onClick={changeGameMode}
       >
-        <span>{gameMode ? <BsFillPeopleFill /> : <BsPersonFill />}</span>
+        <span
+          onClick={changeGameMode}
+        >{gameMode ? <BsFillPeopleFill /> : <BsPersonFill />}</span>
+        <h4>{gameModeCopy}</h4>
       </div>
     </div>
   )

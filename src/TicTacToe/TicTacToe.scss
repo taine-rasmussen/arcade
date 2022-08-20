@@ -70,6 +70,16 @@
   display: flex;
   justify-content: center;
   margin-top: 20px;
+  align-items: center;
+  display: flex;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+}
+
+.tictactoe_player_select h4 {
+  font-size: 1rem;
+  margin-left: 5px;
 }
 
 .tictactoe_player_select span:hover {
