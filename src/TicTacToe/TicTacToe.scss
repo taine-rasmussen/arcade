@@ -6,6 +6,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  background: #d0d0d5;
 }
 
 .tictactoe_game_container {
@@ -28,7 +29,7 @@
 
 .tictactoe_cell_winner {
   background: #000;
-  color: #fff;
+  color: #d0d0d5;
   transition: 2s ease-in;
 
   border: 3px solid #000;
@@ -89,7 +90,7 @@
 }
 
 .tictactoe_game_reset {
-  background: #fff;
+  background: #d0d0d5;
   color: #000;
   border-radius: 2px;
   margin-left: 20px;
