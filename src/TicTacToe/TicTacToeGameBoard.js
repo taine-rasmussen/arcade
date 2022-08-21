@@ -39,17 +39,20 @@ const TicTacToeGameBoard = () => {
   }
 
   const updateTwoPlayerScorbard = () => {
-    if (moveCounter % 2 === 0) {
-      return twoPlayerScore.Player1 = twoPlayerScore.Player1 + 1
-    } else {
-      return twoPlayerScore.Player2 = twoPlayerScore.Player2 + 1
-    }
+    return moveCounter % 2 === 0 ? twoPlayerScore.Player1++ : twoPlayerScore.Player2++
+  }
+
+  const updateSinglePlayerScorbard = () => {
+    return moveCounter % 2 === 0 ? singlePlayerScore.Player1++ : singlePlayerScore.GickyAI++
+  }
+
+  const resetGame = () => {
+
   }
 
   const checkForWin = useCallback(
     () => {
       if (moveCounter >= 8 && !winState) return twoPlayerScore.Tie++
-
       gameboard.map((cell) => {
         const { value, id } = cell
         if (value === '') return;
@@ -57,32 +60,54 @@ const TicTacToeGameBoard = () => {
 
         // Horizontal win conditions
         if (gameboard.indexOf(cell) === 0 && gameboard[1].value === value && gameboard[2].value === value) {
-          return setGameboard([...gameboard], gameboard[id].winner = true, gameboard[1].winner = true, gameboard[2].winner = true), setWinState(true), updateTwoPlayerScorbard()
+          return setGameboard([...gameboard], gameboard[id].winner = true, gameboard[1].winner = true, gameboard[2].winner = true),
+            setWinState(true),
+            updateTwoPlayerScorbard(),
+            gameMode ? updateTwoPlayerScorbard() : updateSinglePlayerScorbard()
         }
         if (gameboard.indexOf(cell) === 3 && gameboard[4].value === value && gameboard[5].value === value) {
-          return setGameboard([...gameboard], gameboard[id].winner = true, gameboard[4].winner = true, gameboard[5].winner = true), setWinState(true), updateTwoPlayerScorbard()
+          return setGameboard([...gameboard], gameboard[id].winner = true, gameboard[4].winner = true, gameboard[5].winner = true),
+            setWinState(true),
+            updateTwoPlayerScorbard(),
+            gameMode ? updateTwoPlayerScorbard() : updateSinglePlayerScorbard()
         }
         if (gameboard.indexOf(cell) === 6 && gameboard[7].value === value && gameboard[8].value === value) {
-          return setGameboard([...gameboard], gameboard[id].winner = true, gameboard[7].winner = true, gameboard[8].winner = true), setWinState(true), updateTwoPlayerScorbard()
+          return setGameboard([...gameboard], gameboard[id].winner = true, gameboard[7].winner = true, gameboard[8].winner = true),
+            setWinState(true),
+            updateTwoPlayerScorbard(),
+            gameMode ? updateTwoPlayerScorbard() : updateSinglePlayerScorbard()
         }
 
         // Vertical win conditions
         if (gameboard.indexOf(cell) === 0 && gameboard[3].value === value && gameboard[6].value === value) {
-          return setGameboard([...gameboard], gameboard[id].winner = true, gameboard[3].winner = true, gameboard[6].winner = true), setWinState(true), updateTwoPlayerScorbard()
+          return setGameboard([...gameboard], gameboard[id].winner = true, gameboard[3].winner = true, gameboard[6].winner = true),
+            setWinState(true),
+            updateTwoPlayerScorbard(),
+            gameMode ? updateTwoPlayerScorbard() : updateSinglePlayerScorbard()
         }
         if (gameboard.indexOf(cell) === 1 && gameboard[4].value === value && gameboard[7].value === value) {
-          return setGameboard([...gameboard], gameboard[id].winner = true, gameboard[4].winner = true, gameboard[7].winner = true), setWinState(true), updateTwoPlayerScorbard()
+          return setGameboard([...gameboard], gameboard[id].winner = true, gameboard[4].winner = true, gameboard[7].winner = true),
+            setWinState(true),
+            updateTwoPlayerScorbard(),
+            gameMode ? updateTwoPlayerScorbard() : updateSinglePlayerScorbard()
         }
         if (gameboard.indexOf(cell) === 2 && gameboard[5].value === value && gameboard[8].value === value) {
-          return setGameboard([...gameboard], gameboard[id].winner = true, gameboard[5].winner = true, gameboard[8].winner = true), setWinState(true), updateTwoPlayerScorbard()
+          return setGameboard([...gameboard], gameboard[id].winner = true, gameboard[5].winner = true, gameboard[8].winner = true),
+            setWinState(true),
+            updateTwoPlayerScorbard(),
+            gameMode ? updateTwoPlayerScorbard() : updateSinglePlayerScorbard()
         }
 
         // Diagonal win conditions
         if (gameboard.indexOf(cell) === 0 && gameboard[4].value === value && gameboard[8].value === value) {
-          return setGameboard([...gameboard], gameboard[id].winner = true, gameboard[4].winner = true, gameboard[8].winner = true), setWinState(true), updateTwoPlayerScorbard()
+          return setGameboard([...gameboard], gameboard[id].winner = true, gameboard[4].winner = true, gameboard[8].winner = true),
+            setWinState(true),
+            updateTwoPlayerScorbard()
         }
         if (gameboard.indexOf(cell) === 2 && gameboard[4].value === value && gameboard[6].value === value) {
-          return setGameboard([...gameboard], gameboard[id].winner = true, gameboard[4].winner = true, gameboard[6].winner = true), setWinState(true), updateTwoPlayerScorbard()
+          return setGameboard([...gameboard], gameboard[id].winner = true, gameboard[4].winner = true, gameboard[6].winner = true),
+            setWinState(true),
+            updateTwoPlayerScorbard()
         }
       })
     }, [moveCounter, gameboard, handlePlayerMove])
