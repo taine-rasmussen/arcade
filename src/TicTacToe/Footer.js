@@ -1,5 +1,5 @@
-import { useState } from 'react'
 import { BsPersonFill, BsFillPeopleFill } from 'react-icons/bs'
+import { GrPowerReset } from 'react-icons/gr'
 
 const Footer = (props) => {
   const {
@@ -53,13 +53,12 @@ const Footer = (props) => {
           onClick={changeGameMode}
         >{gameMode ? <BsFillPeopleFill /> : <BsPersonFill />}</span>
         <h4>{gameModeCopy}</h4>
-      </div>
-      <div>
-        <button
+        <span
           onClick={resetGame}
+          className='tictactoe_game_reset'
         >
-          Reset game
-        </button>
+          <GrPowerReset />
+        </span>
       </div>
     </div>
   )

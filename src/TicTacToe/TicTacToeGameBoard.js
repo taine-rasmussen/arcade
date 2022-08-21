@@ -145,8 +145,8 @@ const TicTacToeGameBoard = () => {
         twoPlayerScore={twoPlayerScore}
         twoPlayerNames={twoPlayerNames}
         setGameMode={setGameMode}
-        gameMode={gameMode}
         resetGame={resetGame}
+        gameMode={gameMode}
       />
     </div>
   )
