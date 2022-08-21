@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useMemo } from 'react'
 
 import Footer from './Footer'
 import Board from './Board'
@@ -26,24 +26,28 @@ const TicTacToeGameBoard = () => {
   const [singlePlayerScore, setSinglePlayerScore] = useState({ Player1: 0, Tie: 0, GickyAI: 0 })
   const [gameMode, setGameMode] = useState(true)
 
-
   const twoPlayerNames = Object.keys(twoPlayerScore)
   const singlePlayerNames = Object.keys(singlePlayerScore)
 
+  const playerTurn = useMemo(
+    () => {
+      return moveCounter % 2 === 0
+    }, [moveCounter]
+  )
 
   const handlePlayerMove = (i) => {
     if (gameboard[i].value !== '') return;
     if (winState) return;
     setMoveCounter(moveCounter + 1)
-    setGameboard([...gameboard], gameboard[i].value = moveCounter % 2 === 0 ? '0' : 'X')
+    setGameboard([...gameboard], gameboard[i].value = playerTurn ? '0' : 'X')
   }
 
   const updateTwoPlayerScorbard = () => {
-    return moveCounter % 2 === 0 ? twoPlayerScore.Player1++ : twoPlayerScore.Player2++
+    return playerTurn ? twoPlayerScore.Player1++ : twoPlayerScore.Player2++
   }
 
   const updateSinglePlayerScorbard = () => {
-    return moveCounter % 2 === 0 ? singlePlayerScore.Player1++ : singlePlayerScore.GickyAI++
+    return playerTurn ? singlePlayerScore.Player1++ : singlePlayerScore.GickyAI++
   }
 
   const checkForWin = useCallback(
@@ -108,11 +112,21 @@ const TicTacToeGameBoard = () => {
       })
     }, [moveCounter, gameboard, handlePlayerMove])
 
+  const gickyAISuperBot = () => {
+    const randomPosition = Math.floor(Math.random() * gameboard.length)
+    const selectedCellValue = gameboard[randomPosition].value
+    selectedCellValue === '' ? setGameboard([...gameboard], gameboard[randomPosition].value = 'X') : gickyAISuperBot()
+  }
+
   const handleCellClick = (i) => {
+    console.log(playerTurn)
     handlePlayerMove(i)
-    // Write a another checkForWin to handle GickyAI moves. gameMode ? HandlePlayerMove : HandleGickyMove
-    // Turnary where you call updatescorbard so we can keep the same checkForWin func
     checkForWin()
+
+    if (playerTurn) {
+      gickyAISuperBot()
+      setMoveCounter(prevMoveCounter => prevMoveCounter + 1)
+    }
   }
 
   const resetGame = () => {
