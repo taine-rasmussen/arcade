@@ -46,10 +46,6 @@ const TicTacToeGameBoard = () => {
     return moveCounter % 2 === 0 ? singlePlayerScore.Player1++ : singlePlayerScore.GickyAI++
   }
 
-  const resetGame = () => {
-
-  }
-
   const checkForWin = useCallback(
     () => {
       if (moveCounter >= 8 && !winState) return twoPlayerScore.Tie++
@@ -119,6 +115,22 @@ const TicTacToeGameBoard = () => {
     checkForWin()
   }
 
+  const resetGame = () => {
+    setGameboard([
+      { value: '', id: 0, winner: false },
+      { value: '', id: 1, winner: false },
+      { value: '', id: 2, winner: false },
+      { value: '', id: 3, winner: false },
+      { value: '', id: 4, winner: false },
+      { value: '', id: 5, winner: false },
+      { value: '', id: 6, winner: false },
+      { value: '', id: 7, winner: false },
+      { value: '', id: 8, winner: false },
+    ])
+    setMoveCounter(0)
+    setWinState(false)
+  }
+
   if (!gameboard) return;
 
   return (
@@ -134,6 +146,7 @@ const TicTacToeGameBoard = () => {
         twoPlayerNames={twoPlayerNames}
         setGameMode={setGameMode}
         gameMode={gameMode}
+        resetGame={resetGame}
       />
     </div>
   )

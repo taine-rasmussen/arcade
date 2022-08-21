@@ -8,10 +8,12 @@ const Footer = (props) => {
     twoPlayerNames,
     twoPlayerScore,
     setGameMode,
+    resetGame,
     gameMode
   } = props;
 
   const changeGameMode = () => {
+    resetGame()
     setGameMode(!gameMode)
   }
 
@@ -51,6 +53,13 @@ const Footer = (props) => {
           onClick={changeGameMode}
         >{gameMode ? <BsFillPeopleFill /> : <BsPersonFill />}</span>
         <h4>{gameModeCopy}</h4>
+      </div>
+      <div>
+        <button
+          onClick={resetGame}
+        >
+          Reset game
+        </button>
       </div>
     </div>
   )
