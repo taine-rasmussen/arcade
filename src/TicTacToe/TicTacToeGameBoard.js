@@ -50,6 +50,14 @@ const TicTacToeGameBoard = () => {
     return playerTurn ? singlePlayerScore.Player1++ : singlePlayerScore.GickyAI++
   }
 
+  const gickyAISuperBot = () => {
+    const randomPosition = Math.floor(Math.random() * gameboard.length)
+    const selectedCellValue = gameboard[randomPosition].value
+    console.log(gameboard, randomPosition)
+    selectedCellValue === '' ? setGameboard([...gameboard], gameboard[randomPosition].value = 'X') : gickyAISuperBot()
+  }
+
+
   const checkForWin = useCallback(
     () => {
       if (moveCounter >= 8 && !winState) return twoPlayerScore.Tie++
@@ -110,15 +118,7 @@ const TicTacToeGameBoard = () => {
             updateTwoPlayerScorbard()
         }
       })
-    }, [moveCounter, gameboard, handlePlayerMove])
-
-  const gickyAISuperBot = () => {
-    const availableCells = gameboard.filter(cell => cell.value === '')
-    const randomPosition = Math.floor(Math.random() * availableCells.length)
-    const selectedCellValue = availableCells[randomPosition].value
-    console.log(availableCells)
-    selectedCellValue === '' ? setGameboard([...gameboard], gameboard[randomPosition].value = 'X') : gickyAISuperBot()
-  }
+    }, [moveCounter, gameboard, handlePlayerMove, gickyAISuperBot])
 
   const handleCellClick = (i) => {
     console.log(playerTurn)
