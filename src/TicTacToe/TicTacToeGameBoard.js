@@ -119,13 +119,14 @@ const TicTacToeGameBoard = () => {
     }, [moveCounter, gameboard, handlePlayerMove, gickyAISuperBot])
 
   const handleCellClick = (i) => {
-    console.log(playerTurn)
+    console.log(playerTurn, gameMode)
     handlePlayerMove(i)
     checkForWin()
 
-    if (playerTurn) {
+    if (playerTurn && !gameMode) {
       gickyAISuperBot()
       setMoveCounter(prevMoveCounter => prevMoveCounter + 1)
+      checkForWin()
     }
   }
 
