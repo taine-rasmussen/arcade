@@ -36,8 +36,7 @@ const TicTacToeGameBoard = () => {
   )
 
   const handlePlayerMove = (i) => {
-    if (gameboard[i].value !== '') return;
-    if (winState) return;
+    if (gameboard[i].value !== '' || winState) return;
     setMoveCounter(moveCounter + 1)
     setGameboard([...gameboard], gameboard[i].value = playerTurn ? '0' : 'X')
   }
@@ -63,8 +62,7 @@ const TicTacToeGameBoard = () => {
       if (moveCounter >= 8 && !winState) return twoPlayerScore.Tie++
       gameboard.map((cell) => {
         const { value, id } = cell
-        if (value === '') return;
-        if (winState) return;
+        if (value === '' || winState) return;
 
         // Horizontal win conditions
         if (gameboard.indexOf(cell) === 0 && gameboard[1].value === value && gameboard[2].value === value) {
