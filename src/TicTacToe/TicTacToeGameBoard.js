@@ -113,8 +113,10 @@ const TicTacToeGameBoard = () => {
     }, [moveCounter, gameboard, handlePlayerMove])
 
   const gickyAISuperBot = () => {
-    const randomPosition = Math.floor(Math.random() * gameboard.length)
-    const selectedCellValue = gameboard[randomPosition].value
+    const availableCells = gameboard.filter(cell => cell.value === '')
+    const randomPosition = Math.floor(Math.random() * availableCells.length)
+    const selectedCellValue = availableCells[randomPosition].value
+    console.log(availableCells)
     selectedCellValue === '' ? setGameboard([...gameboard], gameboard[randomPosition].value = 'X') : gickyAISuperBot()
   }
 
