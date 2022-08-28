@@ -55,9 +55,10 @@ const TicTacToeGameBoard = () => {
     selectedCellValue === '' ? setGameboard([...gameboard], gameboard[randomPosition].value = 'X') : gickyAISuperBot()
   }
 
-  const updateGameScore = () => {
-    return gameMode ? updateTwoPlayerScorbard() : updateSinglePlayerScorbard()
-  }
+  const updateGameScore = useCallback(
+    () => {
+      return gameMode ? updateTwoPlayerScorbard() : updateSinglePlayerScorbard()
+    }, [gameMode])
 
   const checkForWin = useCallback(
     () => {
@@ -112,7 +113,7 @@ const TicTacToeGameBoard = () => {
             setWinState(true)
         }
       })
-    }, [moveCounter, gameboard, handlePlayerMove, gickyAISuperBot, updateGameScore])
+    }, [moveCounter, gameboard, handlePlayerMove, updateGameScore, winState])
 
   const handleCellClick = (i) => {
     handlePlayerMove(i)
