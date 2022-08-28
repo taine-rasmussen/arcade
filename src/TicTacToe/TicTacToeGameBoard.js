@@ -36,7 +36,7 @@ const TicTacToeGameBoard = () => {
   )
 
   const updateTwoPlayerScorbard = () => {
-    return playerTurn ? twoPlayerScore.Player1 = twoPlayerScore.Player1 + 1 : twoPlayerScore.Player2 = twoPlayerScore.Player2 + 1
+    return playerTurn ? twoPlayerScore.Player1++ : twoPlayerScore.Player2++
   }
 
   const updateSinglePlayerScorbard = () => {
@@ -52,7 +52,7 @@ const TicTacToeGameBoard = () => {
   const updateGameScore = useCallback(
     () => {
       return gameMode ? updateTwoPlayerScorbard() : updateSinglePlayerScorbard()
-    }, [gameMode])
+    }, [gameMode, playerTurn])
 
   const checkForWin = useCallback(
     () => {
@@ -113,14 +113,13 @@ const TicTacToeGameBoard = () => {
     if (gameboard[i].value !== '' || winState) return;
     setGameboard([...gameboard], gameboard[i].value = playerTurn ? 'X' : '0')
     checkForWin()
-    setMoveCounter(prevMoveCounter => prevMoveCounter + 1)
+    setMoveCounter(moveCounter + 1)
   }
 
   const handleCellClick = (i) => {
     handlePlayerMove(i)
-    if (playerTurn && !gameMode) {
+    if (!playerTurn && !gameMode) {
       gickyAISuperBot()
-      setMoveCounter(prevMoveCounter => prevMoveCounter + 1)
     }
   }
 
@@ -140,7 +139,7 @@ const TicTacToeGameBoard = () => {
     setWinState(false)
   }
 
-  console.log(playerTurn, moveCounter)
+  console.log(moveCounter % 2 === 0)
 
   if (!gameboard) return;
 
