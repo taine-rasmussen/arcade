@@ -52,10 +52,12 @@ const TicTacToeGameBoard = () => {
   const gickyAISuperBot = () => {
     const randomPosition = Math.floor(Math.random() * gameboard.length)
     const selectedCellValue = gameboard[randomPosition].value
-    console.log(gameboard, randomPosition)
     selectedCellValue === '' ? setGameboard([...gameboard], gameboard[randomPosition].value = 'X') : gickyAISuperBot()
   }
 
+  const updateGameScore = () => {
+    return gameMode ? updateTwoPlayerScorbard() : updateSinglePlayerScorbard()
+  }
 
   const checkForWin = useCallback(
     () => {
@@ -67,62 +69,54 @@ const TicTacToeGameBoard = () => {
         // Horizontal win conditions
         if (gameboard.indexOf(cell) === 0 && gameboard[1].value === value && gameboard[2].value === value) {
           return setGameboard([...gameboard], gameboard[id].winner = true, gameboard[1].winner = true, gameboard[2].winner = true),
-            setWinState(true),
-            updateTwoPlayerScorbard(),
-            gameMode ? updateTwoPlayerScorbard() : updateSinglePlayerScorbard()
+            updateGameScore(),
+            setWinState(true)
         }
         if (gameboard.indexOf(cell) === 3 && gameboard[4].value === value && gameboard[5].value === value) {
           return setGameboard([...gameboard], gameboard[id].winner = true, gameboard[4].winner = true, gameboard[5].winner = true),
-            setWinState(true),
-            updateTwoPlayerScorbard(),
-            gameMode ? updateTwoPlayerScorbard() : updateSinglePlayerScorbard()
+            updateGameScore(),
+            setWinState(true)
         }
         if (gameboard.indexOf(cell) === 6 && gameboard[7].value === value && gameboard[8].value === value) {
           return setGameboard([...gameboard], gameboard[id].winner = true, gameboard[7].winner = true, gameboard[8].winner = true),
-            setWinState(true),
-            updateTwoPlayerScorbard(),
-            gameMode ? updateTwoPlayerScorbard() : updateSinglePlayerScorbard()
+            updateGameScore(),
+            setWinState(true)
         }
 
         // Vertical win conditions
         if (gameboard.indexOf(cell) === 0 && gameboard[3].value === value && gameboard[6].value === value) {
           return setGameboard([...gameboard], gameboard[id].winner = true, gameboard[3].winner = true, gameboard[6].winner = true),
-            setWinState(true),
-            updateTwoPlayerScorbard(),
-            gameMode ? updateTwoPlayerScorbard() : updateSinglePlayerScorbard()
+            updateGameScore(),
+            setWinState(true)
         }
         if (gameboard.indexOf(cell) === 1 && gameboard[4].value === value && gameboard[7].value === value) {
           return setGameboard([...gameboard], gameboard[id].winner = true, gameboard[4].winner = true, gameboard[7].winner = true),
-            setWinState(true),
-            updateTwoPlayerScorbard(),
-            gameMode ? updateTwoPlayerScorbard() : updateSinglePlayerScorbard()
+            updateGameScore(),
+            setWinState(true)
         }
         if (gameboard.indexOf(cell) === 2 && gameboard[5].value === value && gameboard[8].value === value) {
           return setGameboard([...gameboard], gameboard[id].winner = true, gameboard[5].winner = true, gameboard[8].winner = true),
-            setWinState(true),
-            updateTwoPlayerScorbard(),
-            gameMode ? updateTwoPlayerScorbard() : updateSinglePlayerScorbard()
+            updateGameScore(),
+            setWinState(true)
         }
 
         // Diagonal win conditions
         if (gameboard.indexOf(cell) === 0 && gameboard[4].value === value && gameboard[8].value === value) {
           return setGameboard([...gameboard], gameboard[id].winner = true, gameboard[4].winner = true, gameboard[8].winner = true),
-            setWinState(true),
-            updateTwoPlayerScorbard()
+            updateGameScore(),
+            setWinState(true)
         }
         if (gameboard.indexOf(cell) === 2 && gameboard[4].value === value && gameboard[6].value === value) {
           return setGameboard([...gameboard], gameboard[id].winner = true, gameboard[4].winner = true, gameboard[6].winner = true),
-            setWinState(true),
-            updateTwoPlayerScorbard()
+            updateGameScore(),
+            setWinState(true)
         }
       })
-    }, [moveCounter, gameboard, handlePlayerMove, gickyAISuperBot])
+    }, [moveCounter, gameboard, handlePlayerMove, gickyAISuperBot, updateGameScore])
 
   const handleCellClick = (i) => {
-    console.log(playerTurn, gameMode)
     handlePlayerMove(i)
     checkForWin()
-
     if (playerTurn && !gameMode) {
       gickyAISuperBot()
       setMoveCounter(prevMoveCounter => prevMoveCounter + 1)
