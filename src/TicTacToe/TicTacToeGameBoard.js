@@ -35,14 +35,8 @@ const TicTacToeGameBoard = () => {
     }, [moveCounter]
   )
 
-  const handlePlayerMove = (i) => {
-    if (gameboard[i].value !== '' || winState) return;
-    setMoveCounter(prevMoveCounter => prevMoveCounter + 1)
-    setGameboard([...gameboard], gameboard[i].value = playerTurn ? 'X' : '0')
-  }
-
   const updateTwoPlayerScorbard = () => {
-    return playerTurn ? twoPlayerScore.Player2 = twoPlayerScore.Player2 + 1 : twoPlayerScore.Player1 = twoPlayerScore.Player1 + 1
+    return playerTurn ? twoPlayerScore.Player1 = twoPlayerScore.Player1 + 1 : twoPlayerScore.Player2 = twoPlayerScore.Player2 + 1
   }
 
   const updateSinglePlayerScorbard = () => {
@@ -113,15 +107,20 @@ const TicTacToeGameBoard = () => {
             setWinState(true)
         }
       })
-    }, [moveCounter, gameboard, handlePlayerMove, gickyAISuperBot, updateGameScore, winState])
+    }, [moveCounter, gameboard, gickyAISuperBot, updateGameScore, winState])
+
+  const handlePlayerMove = (i) => {
+    if (gameboard[i].value !== '' || winState) return;
+    setGameboard([...gameboard], gameboard[i].value = playerTurn ? 'X' : '0')
+    checkForWin()
+    setMoveCounter(prevMoveCounter => prevMoveCounter + 1)
+  }
 
   const handleCellClick = (i) => {
     handlePlayerMove(i)
-    checkForWin()
     if (playerTurn && !gameMode) {
       gickyAISuperBot()
       setMoveCounter(prevMoveCounter => prevMoveCounter + 1)
-      checkForWin()
     }
   }
 
@@ -140,6 +139,8 @@ const TicTacToeGameBoard = () => {
     setMoveCounter(0)
     setWinState(false)
   }
+
+  console.log(playerTurn, moveCounter)
 
   if (!gameboard) return;
 
