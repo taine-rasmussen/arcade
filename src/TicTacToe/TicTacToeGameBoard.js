@@ -119,12 +119,18 @@ const TicTacToeGameBoard = () => {
     }
   }
 
-  const handleCellClick = (i) => {
-    if (!playerTurn && !gameMode) {
-      gickyAISuperBot()
-    }
-    handlePlayerMove(i)
-  }
+  // const handleCellClick = (i) => {
+  //   if (!playerTurn && !gameMode) {
+  //     gickyAISuperBot()
+  //   }
+  //   handlePlayerMove(i)
+  // }
+
+  const handleTwoPlayerCellClick = useCallback(
+    (i) => {
+      handlePlayerMove(i)
+    }, [moveCounter]
+  )
 
   const resetGame = () => {
     setGameboard([
@@ -150,7 +156,7 @@ const TicTacToeGameBoard = () => {
       <Board
         gameMode={gameMode}
         gameboard={gameboard}
-        handleCellClick={handleCellClick}
+        handleTwoPlayerCellClick={handleTwoPlayerCellClick}
       />
       <Footer
         singlePlayerScore={singlePlayerScore}

@@ -2,7 +2,7 @@ const Board = (props) => {
   const {
     gameMode,
     gameboard,
-    handleCellClick
+    handleTwoPlayerCellClick
   } = props
 
   return (
@@ -13,7 +13,7 @@ const Board = (props) => {
           <div
             className={`tictactoe_cell_${winner ? 'winner' : 'normal'}`}
             key={i}
-            onClick={() => { handleCellClick(i) }}
+            onClick={gameMode ? () => { handleTwoPlayerCellClick(i) } : console.log('the other handle click')}
           >
             {value}
           </div>
