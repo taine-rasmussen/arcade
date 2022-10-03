@@ -119,16 +119,10 @@ const TicTacToeGameBoard = () => {
     }
   }
 
-  // const handleCellClick = (i) => {
-  //   if (!playerTurn && !gameMode) {
-  //     gickyAISuperBot()
-  //   }
-  //   handlePlayerMove(i)
-  // }
-
   const handleTwoPlayerCellClick = useCallback(
     (i) => {
       handlePlayerMove(i)
+      console.log('twoPlayerClick')
     }, [moveCounter]
   )
 
