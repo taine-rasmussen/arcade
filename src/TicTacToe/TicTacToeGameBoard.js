@@ -122,7 +122,6 @@ const TicTacToeGameBoard = () => {
   const handleTwoPlayerCellClick = useCallback(
     (i) => {
       handlePlayerMove(i)
-      console.log('twoPlayerClick')
     }, [moveCounter]
   )
 
