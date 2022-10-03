@@ -1,5 +1,6 @@
 const Board = (props) => {
   const {
+    gameMode,
     gameboard,
     handleCellClick
   } = props

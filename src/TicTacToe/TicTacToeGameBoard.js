@@ -46,7 +46,8 @@ const TicTacToeGameBoard = () => {
   const gickyAISuperBot = () => {
     const randomPosition = Math.floor(Math.random() * gameboard.length)
     const selectedCellValue = gameboard[randomPosition].value
-    selectedCellValue === '' ? setGameboard([...gameboard], gameboard[randomPosition].value = 'X') : gickyAISuperBot()
+    console.log(randomPosition)
+    return selectedCellValue === '' ? setGameboard([...gameboard], gameboard[randomPosition].value = 'X') : gickyAISuperBot()
   }
 
   const updateGameScore = useCallback(
@@ -111,16 +112,18 @@ const TicTacToeGameBoard = () => {
 
   const handlePlayerMove = (i) => {
     if (gameboard[i].value !== '' || winState) return;
-    setGameboard([...gameboard], gameboard[i].value = playerTurn ? 'X' : '0')
-    checkForWin()
-    setMoveCounter(moveCounter + 1)
+    if (gameMode) {
+      return setGameboard([...gameboard], gameboard[i].value = playerTurn ? 'X' : '0'), checkForWin(), setMoveCounter(moveCounter + 1)
+    } else {
+      return setGameboard([...gameboard], gameboard[i].value = '0'), checkForWin(), setMoveCounter(moveCounter + 1)
+    }
   }
 
   const handleCellClick = (i) => {
-    handlePlayerMove(i)
     if (!playerTurn && !gameMode) {
       gickyAISuperBot()
     }
+    handlePlayerMove(i)
   }
 
   const resetGame = () => {
@@ -138,14 +141,14 @@ const TicTacToeGameBoard = () => {
     setMoveCounter(0)
     setWinState(false)
   }
-
-  console.log(moveCounter % 2 === 0)
-
   if (!gameboard) return;
+
+  console.log('moveCounter:', moveCounter);
 
   return (
     <div className='tictactoe_container'>
       <Board
+        gameMode={gameMode}
         gameboard={gameboard}
         handleCellClick={handleCellClick}
       />
